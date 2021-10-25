@@ -8,31 +8,21 @@ public class URLify {
 
 		String s = "Mr John Smith       ";
 		System.out.println(u.replace(s.toCharArray(), 13));
+
 	}
 
-	String replace(char[] chars, int len) {
-		if (chars == null) {
-			return "";
-		}
-		int spaceCount = 0;
-		int index = 0;
-		// first loop, locate last position
-		for (int i = 0; i < len; i++) {
-			if (chars[i] == ' ') {
-				spaceCount++;
+	public String replace(char[] chars, int trueLength) {
+
+		int spaces = 0;
+		for(int i=0; i<trueLength; i++) {
+			if(chars[i] == ' ') {
+				spaces++;
 			}
 		}
-		System.out.println("[spaceCount] - " + spaceCount);
 		
-		index = len + spaceCount * 2 - 1;
-		
-		System.out.print("[index]-" + index);
-		System.out.print(" [len]-" + len);
-		System.out.print(" [spaceCount * 2]-" + spaceCount * 2);
-		
-		// second loop, replace spaces from the end
-		for (int i = len - 1; i >= 0; i--) {
-			System.out.println("c: " + chars[i]);
+		int index = trueLength + spaces * 2 - 1; 
+		System.out.println(index);
+		for (int i = trueLength - 1; i >= 0; i--) {
 			if (chars[i] == ' ') {
 				chars[index] = '0';
 				chars[index - 1] = '2';
@@ -44,7 +34,7 @@ public class URLify {
 				index--;
 			}
 		}
+		
 		return new String(chars).trim();
 	}
-
 }
